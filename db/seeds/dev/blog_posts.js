@@ -5,7 +5,8 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('blog_posts').insert([
         {title: 'Testing', body: '1234'},
-        {title: 'Running', body: 'is fun'}
+        {title: 'Running', body: 'is fun'},
+        {title: 'This is', body: 'a third blog'}
       ]);
     });
 };
