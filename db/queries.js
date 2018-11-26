@@ -13,3 +13,16 @@ exports.getBlogPost = (callback, allPosts) => {
         callback(err);
     })
 }
+
+exports.login = (callback, email, password) => {
+    knex('users')
+    .select('*')
+    .where('email', email)
+    .then(result => {
+        if (result[0].password === password) {
+            callback(null, result[0].email)
+        } else {
+            callback('Incorrect Password')
+        }
+    })
+}

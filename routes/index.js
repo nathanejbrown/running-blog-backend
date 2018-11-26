@@ -14,26 +14,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/newest-post', function(req, res) {
-  queries.getBlogPost((err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log(result)
-      res.status(200).send(result);
-    }
-  }, false)
-})
-
-router.get('/all-posts', function (req, res) {
-  queries.getBlogPost((err, result) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log(result)
-      res.status(200).send(result);
-    }
-  }, true)
-})
-
 module.exports = router;
