@@ -8,13 +8,12 @@ router.use(function(req, res, next) {
     next();
   });
 
+// router.use(errorHandler);
+
 router.post('/', function(req, res) {
     queries.login((err, result) => {
         if(err) {
-            let responseObject = {
-                error: err
-            }
-            res.status(400).send(responseObject)
+            res.status(400).end();
         } else {
             let responseObject = {
                 email: result,
