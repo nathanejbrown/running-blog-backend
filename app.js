@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var postsRouter = require('./routes/posts');
+var expressJwt = require('express-jwt');
 
 var app = express();
 
@@ -28,6 +29,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+//this will need to be configured to control access to routes. 
+// app.use(expressJwt({ secret: process.env.PRIVATE_KEY_JWT }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
