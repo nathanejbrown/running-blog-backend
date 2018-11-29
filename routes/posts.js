@@ -23,7 +23,6 @@ router.get('/all-posts', function (req, res) {
         if(err) {
         console.log(err);
         } else {
-        console.log(result)
         res.status(200).send(result);
         }
     }, true)
