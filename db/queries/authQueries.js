@@ -6,12 +6,11 @@ exports.login = (callback, email, password) => {
     .select('*')
     .where('email', email)
     .then(result => {
-        bcrypt.compare(password, result[0].password, function(err, res) {
-            if (res) {
-                callback(null, true);
-            } else {
-                callback('Incorrect Password');
-            }
+        hashing.comparePassword(password, result[0].password)
+        .then(resolve => {
+            callback(null, resolve)
+        }).catch(error => {
+            callback(error)
         });
     }).catch(err => {
         callback('User not found');

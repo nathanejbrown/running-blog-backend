@@ -11,3 +11,15 @@ exports.hashPassword = (password) => {
         });
     });
 }
+
+exports.comparePassword = (password, hashedPassword) => {
+    return new Promise(function(resolve, reject) {
+        bcrypt.compare(password, hashedPassword, function(err, res) {
+            if (err || !res) {
+                reject(Error(err));
+            } else {
+                resolve(true)
+            }
+        });
+    });
+}
