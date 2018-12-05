@@ -1,4 +1,5 @@
 const knex = require('./knex');
+const bcrypt = require('bcrypt');
 
 exports.getBlogPost = (callback, allPosts) => {
     knex('blog_posts')
@@ -19,10 +20,14 @@ exports.login = (callback, email, password) => {
     .select('*')
     .where('email', email)
     .then(result => {
-        if (result[0].password === password) {
-            callback(null, result[0].email)
-        } else {
-            callback('Incorrect Password')
-        }
+        bcrypt.compare(password, result[0].password, function(err, res) {
+            if (res) {
+                callback(null, true);
+            } else {
+                callback('Incorrect Password');
+            }
+        });
+    }).catch(err => {
+        callback('User not found');
     })
 }
