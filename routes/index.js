@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var queries = require('../db/queries.js');
+// var queries = require('../db/queries/postQueries.js');
 
 /* GET home page. */
 

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var queries = require('../db/queries.js');
+var postQueries = require('../db/queries/postQueries.js');
 
 router.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -9,7 +9,7 @@ router.use(function(req, res, next) {
   });
 
 router.get('/newest-post', function(req, res) {
-    queries.getBlogPost((err, result) => {
+    postQueries.getBlogPost((err, result) => {
         if(err) {
         console.log(err);
         } else {
@@ -19,7 +19,7 @@ router.get('/newest-post', function(req, res) {
 })
 
 router.get('/all-posts', function (req, res) {
-    queries.getBlogPost((err, result) => {
+    postQueries.getBlogPost((err, result) => {
         if(err) {
         console.log(err);
         } else {
