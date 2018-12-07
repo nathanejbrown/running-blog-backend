@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var authQueries = require('../db/queries/authQueries');
-var tokens = require('../shared/tokens');
+const express = require('express');
+const router = express.Router();
+const authQueries = require('../db/queries/authQueries');
+const tokens = require('../shared/tokens');
 
 router.post('/', function(req, res) {
     let password = req.body.password;

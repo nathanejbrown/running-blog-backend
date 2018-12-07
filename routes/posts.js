@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var postQueries = require('../db/queries/postQueries.js');
+const express = require('express');
+const router = express.Router();
+const postQueries = require('../db/queries/postQueries.js');
 
 router.get('/newest-post', function(req, res) {
     postQueries.getBlogPost((err, result) => {
