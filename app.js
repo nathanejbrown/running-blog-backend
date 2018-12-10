@@ -8,12 +8,15 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
 const postsRouter = require('./routes/posts');
+const profileRouter = require('./routes/profile');
 const expressJwt = require('express-jwt');
 
 const unprotected = [
   /\/posts*/,
   /\/auth*/
 ]
+
+const cors = require('cors');
 
 const app = express();
 
@@ -29,11 +32,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors({
+  'allowedHeaders': ['Origin', 'Content-Type', 'X-Requested-With', 'Accept', 'Authorization'],
+  'origin': '*',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'preflightContinue': false
+}));
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//   next();
+// });
 
 //this will need to be configured to control access to routes. 
 app.use(expressJwt({ secret: process.env.PRIVATE_KEY_JWT }).unless({path: unprotected}));
@@ -42,6 +53,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
