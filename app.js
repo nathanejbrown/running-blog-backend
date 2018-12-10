@@ -10,6 +10,11 @@ const authRouter = require('./routes/auth');
 const postsRouter = require('./routes/posts');
 const expressJwt = require('express-jwt');
 
+const unprotected = [
+  /\/posts*/,
+  /\/auth*/
+]
+
 const app = express();
 
 require('dotenv').config()
@@ -31,7 +36,7 @@ app.use(function(req, res, next) {
 });
 
 //this will need to be configured to control access to routes. 
-// app.use(expressJwt({ secret: process.env.PRIVATE_KEY_JWT }));
+app.use(expressJwt({ secret: process.env.PRIVATE_KEY_JWT }).unless({path: unprotected}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
