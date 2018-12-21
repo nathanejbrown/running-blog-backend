@@ -22,6 +22,16 @@ router.get('/all-posts', function (req, res) {
     }, true)
 })
 
+router.get('/one-post/:id', function (req, res) {
+    postQueries.oneBlogPost((err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(result)
+        }
+    }, req.params.id)
+})
+
 router.post('/new', function (req, res) {
     postQueries.newBlogPost((err, result) => {
         if (err) {

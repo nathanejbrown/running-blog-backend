@@ -20,6 +20,18 @@ exports.newBlogPost = (callback, title, body) => {
         title: title,
         body: body
     })
+    .returning(['title', 'body'])
+    .then(result => {
+        callback(null, result)
+    }).catch(err => {
+        callback(err)
+    })
+}
+
+exports.oneBlogPost = (callback, id) => {
+    knex('blog_posts')
+    .select('*')
+    .where('id', id)
     .then(result => {
         callback(null, result)
     }).catch(err => {
