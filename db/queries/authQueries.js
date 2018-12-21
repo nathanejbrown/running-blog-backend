@@ -8,7 +8,7 @@ exports.login = (callback, email, password) => {
     .then(result => {
         hashing.comparePassword(password, result[0].password)
         .then(resolve => {
-            callback(null, resolve)
+            callback(null, result[0])
         }).catch(error => {
             callback(error)
         });

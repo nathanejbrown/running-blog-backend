@@ -10,7 +10,7 @@ router.post('/', function(req, res) {
         if(err) {
             res.status(400).end();
         } else {
-            let myToken = tokens.generateToken(req.body.email);
+            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name);
             res.status(200).json({myToken});
         }
     }, email, password)
