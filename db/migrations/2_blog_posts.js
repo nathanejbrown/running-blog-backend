@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
         table.increments();
         table.string('title');
         table.string('body');
+        table.integer('authorID').references('userID').inTable('users').defaultTo(null);
         });
 };
 

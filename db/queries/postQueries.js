@@ -14,11 +14,12 @@ exports.getBlogPost = (callback, allPosts) => {
     })
 }
 
-exports.newBlogPost = (callback, title, body) => {
+exports.newBlogPost = (callback, title, body, userID) => {
     knex('blog_posts')
     .insert({
         title: title,
-        body: body
+        body: body,
+        authorID: userID
     })
     .returning(['title', 'body'])
     .then(result => {

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postQueries = require('../db/queries/postQueries.js');
+const expressJwt = require('express-jwt');
 
 router.get('/newest-post', function(req, res) {
     postQueries.getBlogPost((err, result) => {
@@ -39,7 +40,7 @@ router.post('/new', function (req, res) {
         } else {
             res.status(200).send(result);
         }
-    }, req.body.title, req.body.body)
+    }, req.body.title, req.body.body, req.user.userID)
 })
 
 module.exports = router;
