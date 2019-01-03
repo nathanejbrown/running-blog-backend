@@ -43,5 +43,15 @@ router.post('/new', function (req, res) {
     }, req.body.title, req.body.body, req.user.userID)
 })
 
+router.get('/all-by-author', function (req, res) {
+    postQueries.allPostsByAuthor((err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.status(200).send(result);
+        }
+    }, req.user.userID)
+})
+
 module.exports = router;
 

@@ -39,3 +39,14 @@ exports.oneBlogPost = (callback, id) => {
         callback(err)
     })
 }
+
+exports.allPostsByAuthor = (callback, id) => {
+    knex('blog_posts')
+    .select('*')
+    .where('authorID', id)
+    .then(result => {
+        callback(null, result)
+    }).catch(err => {
+        callback(err)
+    })
+}
