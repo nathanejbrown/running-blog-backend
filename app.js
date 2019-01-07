@@ -12,7 +12,7 @@ const profileRouter = require('./routes/profile');
 const expressJwt = require('express-jwt');
 
 const unprotected = [
-  // /\/posts*/,
+  /\/posts*/,
   /\/auth*/
 ]
 

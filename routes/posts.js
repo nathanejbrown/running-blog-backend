@@ -6,9 +6,9 @@ const expressJwt = require('express-jwt');
 router.get('/newest-post', function(req, res) {
     postQueries.getBlogPost((err, result) => {
         if(err) {
-        console.log(err);
+            console.log(err);
         } else {
-        res.status(200).send(result);
+            res.status(200).send(result);
         }
     }, false)
 })
@@ -16,9 +16,9 @@ router.get('/newest-post', function(req, res) {
 router.get('/all-posts', function (req, res) {
     postQueries.getBlogPost((err, result) => {
         if(err) {
-        console.log(err);
+            console.log(err);
         } else {
-        res.status(200).send(result);
+            res.status(200).send(result);
         }
     }, true)
 })
