@@ -4,6 +4,7 @@ const authQueries = require('../db/queries/authQueries');
 const tokens = require('../shared/tokens');
 
 router.post('/', function(req, res) {
+    console.log(req.body)
     let password = req.body.password;
     let email = req.body.email.toLowerCase();
     authQueries.login((err, result) => {
