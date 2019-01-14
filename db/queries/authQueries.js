@@ -17,16 +17,19 @@ exports.login = (callback, email, password) => {
     })
 }
 
-exports.newUser = (callback, email, password) => {
+exports.newUser = (callback, email, password, firstName, lastName) => {
     hashing.hashPassword(password)
     .then(result => {
         knex('users')
             .insert({
+                first_name: firstName,
+                last_name: lastName,
                 email: email,
                 password: result
             })
+            .returning(['first_name', 'last_name', 'email', 'password', 'userID'])
             .then(result => {
-                callback(null, true);
+                callback(null, result[0]);
             }).catch(err => {
                 callback(err);
             })

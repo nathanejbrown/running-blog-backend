@@ -14,7 +14,6 @@ const expressJwt = require('express-jwt');
 const unprotected = [
   // /\/posts*/,
   '/posts/newest-post',
-  '/posts/all-postsRouter',
   '/posts/one-post/:id',
   /\/auth*/
 ]

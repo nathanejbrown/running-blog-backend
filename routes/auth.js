@@ -4,7 +4,6 @@ const authQueries = require('../db/queries/authQueries');
 const tokens = require('../shared/tokens');
 
 router.post('/', function(req, res) {
-    console.log(req.body)
     let password = req.body.password;
     let email = req.body.email.toLowerCase();
     authQueries.login((err, result) => {
@@ -20,16 +19,17 @@ router.post('/', function(req, res) {
 router.post('/new', function (req, res) {
     let email = req.body.email;
     let password = req.body.password;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
     authQueries.newUser((err, result) => {
         if (err) {
             console.log(err);
             res.status(400).end();
         } else {
-            res.status(200).json({
-                message: 'User Created'
-            })
+            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name, result.userID);
+            res.status(200).json({myToken});
         }
-    }, email, password)
+    }, email, password, firstName, lastName)
 })
 
 module.exports = router;
