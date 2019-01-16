@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
         // Inserts seed entries
         return knex('users').insert([
           {email: 'hank.moody@yahoo.com',
+          //Karen1234
            password: '$2b$10$yxFZ0.Sv.EWeEQhqG/iQ5.dtyOWuPRDjMWDQVXaYg.frDM5yOllOq',
            first_name: 'Hank',
            last_name: 'Moody',
@@ -15,6 +16,7 @@ exports.seed = function(knex, Promise) {
            last_name: 'Dylan',
            profileImageUrl: 'https://res.cloudinary.com/drwjbjpwv/image/upload/v1547508586/re8sfa9cfjpcyebymuw5.jpg'},
           {email: 'stuff@thing.com',
+          //1234567890
            password: '$2b$10$4sENsiulcQyDxU674KzMZ.G3xQ48rjql4vO07gYL3Cc9jY.gS.ejW',
            first_name: 'Hingle',
            last_name: 'McCringleberry',
