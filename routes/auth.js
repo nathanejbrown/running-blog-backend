@@ -10,8 +10,11 @@ router.post('/', function(req, res) {
         if(err) {
             res.status(400).end();
         } else {
-            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name, result.userID);
-            res.status(200).json({myToken});
+            console.log(result)
+            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name, result.userID, result.profileImageUrl);
+            res.status(200).json({
+                myToken
+            });
         }
     }, email, password)
 })
@@ -26,7 +29,7 @@ router.post('/new', function (req, res) {
             console.log(err);
             res.status(400).end();
         } else {
-            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name, result.userID);
+            let myToken = tokens.generateToken(result.email, result.first_name, result.last_name, result.userID, result.profileImageUrl);
             res.status(200).json({myToken});
         }
     }, email, password, firstName, lastName)
